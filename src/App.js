@@ -1,25 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import { PokemonProvider } from './components/PokemonProvider';
+import PokemonsList from './components/PokemonList';
+import CapturedPokemons from './components/CapturedPokemons';
 
-function App() {
-  return (
+const App = () => (
+  <PokemonProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CapturedPokemons />
+      <PokemonsList />
     </div>
-  );
-}
+  </PokemonProvider>
+);
 
 export default App;
