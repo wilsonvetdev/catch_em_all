@@ -1,21 +1,8 @@
 import React, { useContext } from 'react';
 import { PokemonContext } from './PokemonProvider';
 
-export const PokemonsList = () => {
-  const {
-    pokemons,
-    setPokemons,
-    capturedPokemons,
-    setCapturedPokemons
-  } = useContext(PokemonContext);
-
-  const removePokemonFromList = (removedPokemon) =>
-    pokemons.filter(pokemon => pokemon !== removedPokemon);
-
-  const capture = (pokemon) => () => {
-    setCapturedPokemons([...capturedPokemons, pokemon]);
-    setPokemons(removePokemonFromList(pokemon));
-  };
+const PokemonsList = () => {
+  const { pokemons, capture } = useContext(PokemonContext);
 
   return (
     <div className="pokemons-list">
@@ -23,13 +10,11 @@ export const PokemonsList = () => {
 
       {pokemons.map((pokemon) =>
         <div key={`${pokemon.id}-${pokemon.name}`}>
-          <div>
-            <span>{pokemon.name}</span>
-            <button onClick={capture(pokemon)}>+</button>
-          </div>
+          <span>{pokemon.name}</span>
+          <button onClick={capture(pokemon)}>+</button>
         </div>)}
     </div>
-  );
+  )
 };
 
 export default PokemonsList;
